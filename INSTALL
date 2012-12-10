@@ -1,0 +1,2 @@
+This is a Maven project.  To build it within maven run 'mvn clean install'
+It is also an Eclipse project and can be built from within Eclipse.
