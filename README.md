@@ -1,9 +1,9 @@
 gerrit-utils
 ============
 
-Some administrative utility routines for the Gerrit code-review system
-that support features that cannot be accomplished easily from within
-Gerrit itself.
+Administrative utilities for the Gerrit code-review system supporting
+functionality that cannot be accomplished easily from within Gerrit
+itself.
 
 These utilities have been tested with Gerrit 2.5-rc1 and 2.5 final
 configured with a MySQL database.  They must be ran from the account
