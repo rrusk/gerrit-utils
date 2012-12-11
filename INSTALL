@@ -1,4 +1,9 @@
 This is a Maven project.  To build it with maven run 'mvn clean
-install'.  It is also an Eclipse project and can be built from within
-Eclipse.  An easy way to generate the command-line utility is to
-export it as an runnable jar file from within Eclipse.
+install'.
+
+It is also an Eclipse project and can be built from within Eclipse.
+An easy way to generate the command-line utility is to export it as an
+runnable jar file from within Eclipse.  To do that clone the git repo
+and import it into Eclipse as a Maven project.  Then after building
+it, export as a Java runnable jar.
+
