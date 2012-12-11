@@ -1,2 +1,4 @@
-This is a Maven project.  To build it within maven run 'mvn clean install'
-It is also an Eclipse project and can be built from within Eclipse.
+This is a Maven project.  To build it with maven run 'mvn clean
+install'.  It is also an Eclipse project and can be built from within
+Eclipse.  An easy way to generate the command-line utility is to
+export it as an runnable jar file from within Eclipse.
