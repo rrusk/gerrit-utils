@@ -136,11 +136,11 @@ Download a local clone of the OSCAR repository and move into it
 	   create mode 100644 testfile.txt
 	 user@host:~/oscar$
 
-###Usually when you push to a remote git, you push to the reference
-    '/refs/heads/branch', but when working with Gerrit you have to
-    push to a virtual branch representing "code review before
-    submission to branch". This virtual name space is known as
-    /refs/for/<branch>
+####Usually when you push to a remote git, you push to the reference
+'/refs/heads/branch', but when working with Gerrit you have to
+push to a virtual branch representing "code review before
+submission to branch". This virtual name space is known as
+/refs/for/<branch>
 
 	user@host:~/oscar$ git push origin HEAD:refs/for/<branch>
 	Counting objects: 13, done.
