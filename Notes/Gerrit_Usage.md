@@ -1,32 +1,34 @@
 #Gerrit Code Review - Quick Start
 
+(Adapted from http://gerrit-documentation.googlecode.com/svn/Documentation/2.6/install-quick.html)
+
 ##SSH key generation
 
 ###Please don’t generate new keys if you already have a valid keypair! They will be overwritten!
 
-  user@host:~$ ssh-keygen -t rsa
-  Generating public/private rsa key pair.
-  Enter file in which to save the key (/home/user/.ssh/id_rsa):
-  Created directory '/home/user/.ssh'.
-  Enter passphrase (empty for no passphrase):
-  Enter same passphrase again:
-  Your identification has been saved in /home/user/.ssh/id_rsa.
-  Your public key has been saved in /home/user/.ssh/id_rsa.pub.
-  The key fingerprint is:
-  00:11:22:00:11:22:00:11:44:00:11:22:00:11:22:99 user@host
-  The key's randomart image is:
-  +--[ RSA 2048]----+
-  |     ..+.*=+oo.*E|
-  |      u.OoB.. . +|
-  |       ..*.      |
-  |       o         |
-  |      . S ..     |
-  |                 |
-  |                 |
-  |          ..     |
-  |                 |
-  +-----------------+
-  user@host:~$
+	  	user@host:~$ ssh-keygen -t rsa
+		Generating public/private rsa key pair.
+		Enter file in which to save the key (/home/user/.ssh/id_rsa):
+		Created directory '/home/user/.ssh'.
+		Enter passphrase (empty for no passphrase):
+		Enter same passphrase again:
+		Your identification has been saved in /home/user/.ssh/id_rsa.
+		Your public key has been saved in /home/user/.ssh/id_rsa.pub.
+		The key fingerprint is:
+		00:11:22:00:11:22:00:11:44:00:11:22:00:11:22:99 user@host
+		The key's randomart image is:
+		+--[ RSA 2048]----+
+		|     ..+.*=+oo.*E|
+		|      u.OoB.. . +|
+		|       ..*.      |
+		|       o         |
+		|      . S ..     |
+		|                 |
+		|                 |
+		|          ..     |
+		|                 |
+		+-----------------+
+		user@host:~$
 
 ##Registering your key in Gerrit
 
