@@ -40,11 +40,11 @@ Register a new account in Gerrit through the web interface with the
 email address of your choice.  The authentication type is OpenID so a
 Google or Yahoo OpenID will work.
 
-Once signed in, you willfind a little wizard to get you started. The
+Once signed in, you will find a little wizard to get you started. The
 wizard helps you fill out:
 
 * Real name (visible name in Gerrit)
-* Register your email (it must be confirmed later)
+* Register your email
 * Select a username with which to communicate with Gerrit over ssh+git
   (be sure to press the select button after entering your username
   into the dialog box)
@@ -71,6 +71,8 @@ line feeds are entered in the middle of the RSA string.
 
 ##Verify that the ssh connection works for you.
 
+###Make sure to subsitute your actual Gerrit username for user below.
+
 	      user@host:~$ ssh user@gerrit.seng.uvic.ca -p 29418
 	      The authenticity of host '[gerrit.seng.uvic.ca]:29418 ([127.0.0.1]:29418)' can't be established.
 	      RSA key fingerprint is db:07:3d:c2:94:25:b5:8d:ac:bc:b5:9e:2f:95:5f:4a.
@@ -90,65 +92,80 @@ line feeds are entered in the middle of the RSA string.
 
 ##Project creation
 
+###Create your own branch off seng371/oscar
+
+Do this through the web interface.  Got to
+http://gerrit.seng.uvic.ca:8080/#/admin/projects/seng371/oscar,branches
+
+After signing in, select Projects -> seng371/oscar and use Branches tab.  There should
+be a Branch Name dialog box at the bottom of the screen.  Create a branch based on a team members
+NetlinkID.  Make sure you press the Create Branch button after filling in the Branch Name.
+
 ###Clone Oscar McMaster RELEASE_12_1
 Download a local clone of the OSCAR repository and move into it
 
-	   user@host:~$ git clone ssh://user@host:29418/seng371/oscar
+	   user@host:~$ git clone ssh://user@gerrit.seng.uvic.ca:29418/seng371/oscar
 	   Cloning into oscar...
-	   remote: Counting objects: 2, done
-	   remote: Finding sources: 100% (2/2)
-	   remote: Total 2 (delta 0), reused 0 (delta 0)
+	   remote: Counting objects: 226321, done
+	   remote: Finding sources: 100% (226321/226321)
+	   remote: Total 226321 (delta 173957), reused 222047 (delta 173957)
+	   Receiving objects: 100% (226321/226321), 286.57 MiB | 46.22 MiB/s, done.
+	   Resolving deltas: 100% (173957/173957), done.
+	   Checking connectivity... done.
+	   Checking out files: 100% (8076/8076), done.
 	   user@host:~$ cd oscar
-	   user@host:~/oscar$ git checkout RELEASE_12_1
+	   user@host:~/oscar$ git checkout <your_branch>
+	   user@host:~/oscar$ git pull
 	   user@host:~/oscar$ git status
 	   user@host:~/oscar$
 
-### Create your own project branch
-Make a branch for your teams development.  Use your NetlinkID as the branch name.
+### Make sure that you have the change-id commit hook installed
 
-     user@host:~/oscar$ git branch <branch>
-     user@host:~/oscar$ git checkout <branch>
+  Subsitute your username for "user" in the following commands.
+
+  	    user@host:~/oscar$ gitdir=$(git rev-parse --git-dir)
+	    user@host:!/oscar$ scp -p -P 29418 user@gerrit.seng.uvic.ca:hooks/commit-msg ${gitdir}/hooks/
 
 ### Then make a change to it and upload it as a reviewable change in Gerrit.
 
     	 user@host:~/oscar$ date > testfile.txt
 	 user@host:~/oscar$ git add testfile.txt
 	 user@host:~/oscar$ git commit -m "My pretty test commit"
-	 [master ff643a5] My pretty test commit
-	  1 files changed, 1 insertions(+), 0 deletions(-)
+	 [<branch> ff643a5] My pretty test commit
+	  1 files changed, 1 insertions(+)
 	   create mode 100644 testfile.txt
 	 user@host:~/oscar$
 
-### Make sure that you have the change-id commit hook installed
-
-  Subsitute your username for "user" in the following command.
-
-  	    user@host:~/oscar$ gitdir=$(git rev-parse --git-dir); scp -p -P 29418 user@gerrit.seng.uvic.ca:hooks/commit-msg ${gitdir}/hooks/
-
-####Usually when you push to a remote git, you push to the reference
+###Usually when you push to a remote git, you push to the reference
     '/refs/heads/branch', but when working with Gerrit you have to
     push to a virtual branch representing "code review before
     submission to branch". This virtual name space is known as
     /refs/for/<branch>
 
 	user@host:~/oscar$ git push origin HEAD:refs/for/<branch>
-	Counting objects: 4, done.
-	Writing objects: 100% (3/3), 293 bytes, done.
-	Total 3 (delta 0), reused 0 (delta 0)
-	remote:
+	Counting objects: 13, done.
+	Delta compression using up to 8 threads.
+	Compressing objects: 100% (2/2), done.
+	Writing objects: 100% (3/3), 383 bytes | 0 bytes/s, done.
+	Total 3 (delta 1), reused 0 (delta 0)
+	remote: Resolving deltas: 100% (1/1)
+	remote: Processing changes: new: 1, refs: 1, done    
+	remote: 
 	remote: New Changes:
-	remote:   http://gerrit.seng.uvic.ca:8080/1
-	remote:
-	To ssh://user@gerrit.seng.uvic.ca:29418/oscar
+	remote:   http://gerrit.seng.uvic.ca:8080/9
+	remote: 
+	To ssh://user@gerrit.seng.uvic.ca:29418/seng371/oscar.git
 	 * [new branch]      HEAD -> refs/for/<branch>
-	 user@host:~/oscar$
+	user@host:~/oscar$
 
 You should now be able to access your change by browsing to the http
 URL suggested by your output message.
 
-####To make Gerrit push for review easier, set up some Git aliases
+###To make Gerrit push for review easier, set up some Git aliases
 
-       	    git config remote.review.pushurl ssh://gerrit.seng.uvic.ca:29418/seng371/oscar.git
-	    git config remote.review.push refs/heads/*:refs/for/*
-	    git push review # this will push your current branch up for review
+####Replace user with you Gerrit username and <branch> with your branch name
+
+      	   git config remote.review.pushurl ssh://user@gerrit.seng.uvic.ca:29418/seng371/oscar.git
+	   git config remote.review.push HEAD:refs/for/<branch>
+	   git push review # this will push your current branch up for review
 
