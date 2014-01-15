@@ -128,19 +128,20 @@ Download a local clone of the OSCAR repository and move into it
 
 ### Then make a change to it and upload it as a reviewable change in Gerrit.
 
-    	 user@host:~/oscar$ date > testfile.txt
-	 user@host:~/oscar$ git add testfile.txt
-	 user@host:~/oscar$ git commit -m "My pretty test commit"
-	 [<branch> ff643a5] My pretty test commit
-	  1 files changed, 1 insertions(+)
-	   create mode 100644 testfile.txt
-	 user@host:~/oscar$
+  Use `git status` frequently.  It generally tells you what you might do next.
 
-####Usually when you push to a remote git, you push to the reference
-'/refs/heads/branch', but when working with Gerrit you have to
-push to a virtual branch representing "code review before
-submission to branch". This virtual name space is known as
-/refs/for/<branch>
+      user@host:~/oscar$ date > testfile.txt
+      user@host:~/oscar$ git add testfile.txt
+      user@host:~/oscar$ git commit -m "My pretty test commit"
+       [<branch> ff643a5] My pretty test commit
+        1 files changed, 1 insertions(+)
+	  create mode 100644 testfile.txt
+      user@host:~/oscar$
+
+Usually when you push to a remote git, you push to the reference
+'/refs/heads/your_branch', but when working with Gerrit you have to
+push to a virtual branch representing "code review before submission
+to branch". This virtual name space is known as /refs/for/your_branch
 
 	user@host:~/oscar$ git push origin HEAD:refs/for/<branch>
 	Counting objects: 13, done.
@@ -163,9 +164,9 @@ URL suggested by your output message.
 
 ###To make Gerrit push for review easier, set up some Git aliases
 
-####Replace user with you Gerrit username and <branch> with your branch name
+  Replace user with you Gerrit username and <branch> with your branch name
 
-      	   git config remote.review.pushurl ssh://user@gerrit.seng.uvic.ca:29418/seng371/oscar.git
-	   git config remote.review.push HEAD:refs/for/<branch>
-	   git push review # this will push your current branch up for review
+  	  git config remote.review.pushurl ssh://user@gerrit.seng.uvic.ca:29418/seng371/oscar.git
+	  git config remote.review.push HEAD:refs/for/<branch>
+	  git push review # this will push your current branch up for review
 
