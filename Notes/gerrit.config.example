@@ -1,0 +1,27 @@
+[gerrit]
+	basePath = git
+	canonicalWebUrl = http://gerrit.seng.uvic.ca:8080/
+[database]
+	type = postgresql
+	hostname = localhost
+	database = reviewdb
+	username = gerrit2
+[auth]
+	type = OPENID
+[sendemail]
+	smtpServer = smtp.uvic.ca
+	smtpUser = gerrit2
+[container]
+	user = gerrit2
+	javaHome = /usr/lib/jvm/java-6-oracle/jre
+[sshd]
+	listenAddress = *:29418
+[httpd]
+	listenUrl = http://*:8080/
+[cache]
+	directory = cache
+[gitweb]
+	cgi = /usr/share/gitweb/gitweb.cgi
+[user]
+	name = "Gerrit Code Review"
+	email = "gerrit2@gerrit.seng.uvic.ca"
