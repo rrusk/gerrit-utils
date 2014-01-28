@@ -102,7 +102,7 @@ be a Branch Name dialog box at the bottom of the screen.  Create a branch based 
 NetlinkID.  Make sure you press the Create Branch button after filling in the Branch Name.
 
 ###Clone Oscar McMaster RELEASE_12_1
-Download a local clone of the OSCAR repository and checkout your branch
+Download a local clone of the OSCAR repository and checkout your branch.  Be sure to use your own username rather than 'user'.
 
 	   user@host:~$ git clone ssh://user@gerrit.seng.uvic.ca:29418/seng371/oscar
 	   Cloning into oscar...
@@ -121,7 +121,7 @@ Download a local clone of the OSCAR repository and checkout your branch
 
 ### Make sure that you have the change-id commit hook installed
 
-  Subsitute your username for "user" in the following commands.
+  Subsitute your username for "user" in the following commands.  (First command assumes a Bourne-Again shell.)
 
   	    user@host:~/oscar$ gitdir=$(git rev-parse --git-dir)
 	    user@host:!/oscar$ scp -p -P 29418 user@gerrit.seng.uvic.ca:hooks/commit-msg ${gitdir}/hooks/
